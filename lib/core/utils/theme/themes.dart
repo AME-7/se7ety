@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:se7ety/core/constants/app_fonts.dart';
+import 'package:se7ety/core/utils/styles/app_text_styles.dart';
 import 'package:se7ety/core/utils/styles/colors.dart';
-import 'package:se7ety/core/utils/styles/text_style.dart';
 
 abstract class AppThemes {
   static ThemeData get lightTheme => ThemeData(
@@ -22,7 +22,7 @@ abstract class AppThemes {
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      hintStyle: TextStyles.body.copyWith(color: AppColors.greyColor),
+      hintStyle: AppTextStyles.body16.copyWith(color: AppColors.greyColor),
       fillColor: AppColors.accentColor,
       filled: true,
       prefixIconColor: AppColors.primaryColor,
@@ -37,11 +37,11 @@ abstract class AppThemes {
       selectedItemColor: AppColors.primaryColor,
       unselectedItemColor: AppColors.greyColor,
       backgroundColor: Colors.transparent,
-      selectedLabelStyle: TextStyles.caption1.copyWith(
+      selectedLabelStyle: AppTextStyles.caption12.copyWith(
         fontWeight: FontWeight.w600,
         height: 2,
       ),
-      unselectedLabelStyle: TextStyles.caption1.copyWith(
+      unselectedLabelStyle: AppTextStyles.caption12.copyWith(
         fontWeight: FontWeight.w600,
         height: 2,
       ),

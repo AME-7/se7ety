@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:se7ety/core/utils/styles/app_text_styles.dart';
 import 'package:se7ety/core/utils/styles/colors.dart';
-import 'package:se7ety/core/utils/styles/text_style.dart';
 
 class MainButton extends StatelessWidget {
   const MainButton({
@@ -35,7 +35,7 @@ class MainButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text,
-        style: TextStyles.body.copyWith(
+        style: AppTextStyles.body16.copyWith(
           color: textColor,
           fontWeight: FontWeight.bold,
         ),
