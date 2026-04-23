@@ -17,4 +17,8 @@ class FirestoreProvider {
   static Future<void> addDoctor(DoctorModel doctor) async {
     await doctorCollection.doc(doctor.uid).set(doctor.toJson());
   }
+
+  static Future<void> updateDoctor(DoctorModel doctor) async {
+    await doctorCollection.doc(doctor.uid).update(doctor.toUpdateData());
+  }
 }

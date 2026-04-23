@@ -1,63 +1,81 @@
+import 'dart:io';
+
 class DoctorModel {
-  final String? uid;
-  final String? name;
-  final String? image;
-  final String? specialization;
-  final String? rating;
-  final String? email;
-  final String? phone1;
-  final String? phone2;
-  final String? address;
-  final String? openHours;
-  final String? closeHours;
-  final String? bio;
+  String? uid;
+  String? name;
+  File? image;
+  String? imageUrl;
+  String? specialization;
+  int? rating;
+  String? email;
+  String? phone1;
+  String? phone2;
+  String? bio;
+  String? openHour;
+  String? closeHour;
+  String? address;
 
   DoctorModel({
     this.name,
-    this.email,
-    this.uid,
     this.image,
+    this.imageUrl,
     this.specialization,
+    this.rating,
+    this.email,
     this.phone1,
     this.phone2,
-    this.address,
     this.bio,
-    this.rating,
-    this.openHours,
-    this.closeHours,
+    this.openHour,
+    this.closeHour,
+    this.address,
+    this.uid,
   });
 
-  factory DoctorModel.fromJson(Map<String, dynamic> json) {
-    return DoctorModel(
-      name: json['name'],
-      email: json['email'],
-      uid: json['uid'],
-      image: json['image'],
-      specialization: json['specialization'],
-      phone1: json['phone1'],
-      phone2: json['phone2'],
-      address: json['address'],
-      bio: json['bio'],
-      rating: json['rating'],
-      openHours: json['openHours'],
-      closeHours: json['closeHours'],
-    );
+  DoctorModel.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    imageUrl = json['image'];
+    specialization = json['specialization'];
+    rating = json['rating'];
+    email = json['email'];
+    phone1 = json['phone1'];
+    phone2 = json['phone2'];
+    bio = json['bio'];
+    openHour = json['openHour'];
+    closeHour = json['closeHour'];
+    address = json['address'];
+    uid = json['uid'];
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'email': email,
-      'uid': uid,
-      'image': image,
-      'specialization': specialization,
-      'phone1': phone1,
-      'phone2': phone2,
-      'address': address,
-      'bio': bio,
-      'rating': rating,
-      'openHours': openHours,
-      'closeHours': closeHours,
-    };
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['image'] = imageUrl;
+    data['specialization'] = specialization;
+    data['rating'] = rating;
+    data['email'] = email;
+    data['phone1'] = phone1;
+    data['phone2'] = phone2;
+    data['bio'] = bio;
+    data['openHour'] = openHour;
+    data['closeHour'] = closeHour;
+    data['address'] = address;
+    data['uid'] = uid;
+    return data;
+  }
+
+  Map<String, dynamic> toUpdateData() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (name != null) data['name'] = name;
+    if (imageUrl != null) data['image'] = imageUrl;
+    if (specialization != null) data['specialization'] = specialization;
+    if (rating != null) data['rating'] = rating;
+    if (email != null) data['email'] = email;
+    if (phone1 != null) data['phone1'] = phone1;
+    if (phone2 != null) data['phone2'] = phone2;
+    if (bio != null) data['bio'] = bio;
+    if (openHour != null) data['openHour'] = openHour;
+    if (closeHour != null) data['closeHour'] = closeHour;
+    if (address != null) data['address'] = address;
+    return data;
   }
 }

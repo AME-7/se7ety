@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -38,8 +36,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (state is AuthLoadingState) {
           showLoadingDialog(context);
         } else if (state is AuthSuccessState) {
-          pop(context);
-          log("message");
+          if (widget.userType == UserTypeEnum.patient) {
+            pushToBase(context, Routes.patientMainApp);
+          } else {
+            pushReplacement(context, Routes.updateDoctorProfile);
+          }
         } else if (state is AuthErrorState) {
           pop(context);
           showMyDialog(context, state.error);
@@ -69,7 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Image.asset('assets/images/logo.png', height: 200),
                 const SizedBox(height: 20),
                 Text(
-                  ' سجل حساب جديد كـ "${handleUserType()}"',
+                  'سجل حساب جديد كـ "${handleUserType()}"',
                   style: AppTextStyles.title18,
                 ),
                 const SizedBox(height: 30),
@@ -90,8 +91,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(height: 25.0),
                 CustomTextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  controller: cubit.emailController,
                   textAlign: TextAlign.end,
+                  controller: cubit.emailController,
                   hintText: 'Sayed@example.com',
                   prefixIcon: Icon(Icons.email_rounded),
                   textInputAction: TextInputAction.next,
@@ -117,7 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                 const Gap(20),
                 MainButton(
-                  onPressed: () async {
+                  onPressed: () {
                     if (cubit.formKey.currentState!.validate()) {
                       cubit.register(widget.userType);
                     }
