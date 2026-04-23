@@ -60,7 +60,7 @@ class AuthRepo {
         uid: user?.uid,
       );
 
-      await FirestoreProvider.addDoctor(doctorData);
+      await FirebaseProvider.addDoctor(doctorData);
 
       return right(unit);
     } on FirebaseAuthException catch (e) {
@@ -100,7 +100,7 @@ class AuthRepo {
       );
 
       // use user id as document id => to make it easy to get user data
-      await FirestoreProvider.addPatient(patientData);
+      await FirebaseProvider.addPatient(patientData);
 
       return right(unit);
     } on FirebaseAuthException catch (e) {
@@ -121,7 +121,7 @@ class AuthRepo {
   ) async {
     try {
       doctor.imageUrl = await uploadImageToCloudinary(doctor.image!) ?? '';
-      await FirestoreProvider.updateDoctor(doctor);
+      await FirebaseProvider.updateDoctor(doctor);
       return right(unit);
     } catch (e) {
       return left(Failure(massage: 'حدث خطأ'));

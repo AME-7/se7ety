@@ -6,6 +6,7 @@ import 'package:se7ety/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:se7ety/features/auth/presentation/page/login/login_screen.dart';
 import 'package:se7ety/features/auth/presentation/page/register/register_screen.dart';
 import 'package:se7ety/features/auth/presentation/page/register/update_doctor_profile_screen.dart';
+
 import 'package:se7ety/features/intro/onboarding/onboarding_screen.dart';
 import 'package:se7ety/features/intro/splash/splash_screen.dart';
 import 'package:se7ety/features/patient/main/patient_main_app_screen.dart';
