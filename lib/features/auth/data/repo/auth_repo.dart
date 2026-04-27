@@ -121,6 +121,7 @@ class AuthRepo {
   ) async {
     try {
       doctor.imageUrl = await uploadImageToCloudinary(doctor.image!) ?? '';
+      doctor.email = FirebaseAuth.instance.currentUser?.email;
       await FirebaseProvider.updateDoctor(doctor);
       return right(unit);
     } catch (e) {
