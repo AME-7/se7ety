@@ -20,7 +20,7 @@ class SpecializationSearchScreen extends StatelessWidget {
         title: Text(specialization),
       ),
       body: FutureBuilder(
-        future: FirebaseProvider.getDoctors(),
+        future: FirebaseProvider.getDoctorsBySpecialization(specialization),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());

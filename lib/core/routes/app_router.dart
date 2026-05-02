@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:se7ety/core/constants/user_type_enum.dart';
 import 'package:se7ety/core/routes/routes.dart';
+import 'package:se7ety/features/auth/data/model/doctor_model.dart';
 import 'package:se7ety/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:se7ety/features/auth/presentation/page/login/login_screen.dart';
 import 'package:se7ety/features/auth/presentation/page/register/register_screen.dart';
@@ -9,6 +10,8 @@ import 'package:se7ety/features/auth/presentation/page/register/update_doctor_pr
 
 import 'package:se7ety/features/intro/onboarding/onboarding_screen.dart';
 import 'package:se7ety/features/intro/splash/splash_screen.dart';
+import 'package:se7ety/features/patient/sreach/doctor_profile/page/doctor_profile_screen.dart';
+import 'package:se7ety/features/patient/sreach/specilization_search/page/specialization_search_screen.dart';
 import 'package:se7ety/features/patient/main/patient_main_app_screen.dart';
 import 'package:se7ety/features/welcome/welcome_screen.dart';
 
@@ -53,6 +56,16 @@ class AppRouter {
           create: (context) => AuthCubit(),
           child: const UpdateDoctorProfileScreen(),
         ),
+      ),
+      GoRoute(
+        path: Routes.specializationSearch,
+        builder: (context, state) =>
+            SpecializationSearchScreen(specialization: state.extra as String),
+      ),
+      GoRoute(
+        path: Routes.doctorProfile,
+        builder: (context, state) =>
+            DoctorProfileScreen(doctorModel: state.extra as DoctorModel),
       ),
     ],
   );

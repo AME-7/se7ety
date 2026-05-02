@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:se7ety/features/auth/data/model/doctor_model.dart';
@@ -33,5 +35,28 @@ class FirebaseProvider {
         .where("specialization", isNull: false)
         .orderBy("rating", descending: true)
         .get();
+  }
+
+  static Future<QuerySnapshot> getDoctorsBySpecialization(
+    String specialization,
+  ) async {
+    return await doctorCollection
+        .where("specialization", isEqualTo: specialization)
+        .get();
+  }
+
+  static Future<QuerySnapshot?> searchForDoctorsByName(String name) async {
+    try {
+      var result = await doctorCollection
+          .where("specialization", isNull: false)
+          .orderBy("name")
+          .startAt([name.toLowerCase()])
+          .endAt(["${name.toLowerCase()}\uf8ff"])
+          .get();
+      return result;
+    } on Exception catch (e) {
+      log(e.toString());
+      return null;
+    }
   }
 }

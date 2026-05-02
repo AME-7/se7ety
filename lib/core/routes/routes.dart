@@ -11,4 +11,6 @@ class Routes {
   static String main = '/main';
   static String patientMainApp = '/patientMainApp';
   static String updateDoctorProfile = '/updateDoctorProfile';
+  static String doctorProfile = '/doctorProfile';
+  static String specializationSearch = '/specializationSearch';
 }

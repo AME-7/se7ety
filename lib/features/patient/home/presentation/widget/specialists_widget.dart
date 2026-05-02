@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:se7ety/core/constants/app_images.dart';
+import 'package:se7ety/core/routes/navigations.dart';
+import 'package:se7ety/core/routes/routes.dart';
 import 'package:se7ety/core/utils/styles/app_text_styles.dart';
 import 'package:se7ety/core/utils/styles/colors.dart';
 import 'package:se7ety/core/widget/custom_svg_picture.dart';
@@ -25,11 +27,11 @@ class SpecialistsBanner extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  // pushTo(
-                  //   context,
-                  //   Routes.specializationSearch,
-                  //   extra: cards[index].specialization,
-                  // );
+                  pushTo(
+                    context,
+                    Routes.specializationSearch,
+                    extra: cards[index].specialization,
+                  );
                 },
                 child: ItemCardWidget(model: cards[index]),
               );

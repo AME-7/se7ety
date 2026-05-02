@@ -16,11 +16,16 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     bool isOnboardingShown = SharedPref.isOnboardingShown();
+    bool isLoggedIn = SharedPref.getUserId().isNotEmpty == true;
     Future.delayed(const Duration(seconds: 3)).then((value) {
-      if (isOnboardingShown) {
-        pushReplacement(context, Routes.welcome);
+      if (isLoggedIn) {
+        pushReplacement(context, Routes.patientMainApp);
       } else {
-        pushReplacement(context, Routes.onboarding);
+        if (isOnboardingShown) {
+          pushReplacement(context, Routes.welcome);
+        } else {
+          pushReplacement(context, Routes.onboarding);
+        }
       }
     });
   }
