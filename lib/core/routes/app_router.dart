@@ -10,9 +10,12 @@ import 'package:se7ety/features/auth/presentation/page/register/update_doctor_pr
 
 import 'package:se7ety/features/intro/onboarding/onboarding_screen.dart';
 import 'package:se7ety/features/intro/splash/splash_screen.dart';
+import 'package:se7ety/features/patient/booking/presentation/booking_view.dart';
+import 'package:se7ety/features/patient/main/patient_main_app_screen.dart';
+import 'package:se7ety/features/patient/settings/settings_view.dart';
+import 'package:se7ety/features/patient/settings/user_details.dart';
 import 'package:se7ety/features/patient/sreach/doctor_profile/page/doctor_profile_screen.dart';
 import 'package:se7ety/features/patient/sreach/specilization_search/page/specialization_search_screen.dart';
-import 'package:se7ety/features/patient/main/patient_main_app_screen.dart';
 import 'package:se7ety/features/welcome/welcome_screen.dart';
 
 class AppRouter {
@@ -51,7 +54,7 @@ class AppRouter {
         builder: (context, state) => const PatientMainAppScreen(),
       ),
       GoRoute(
-        path: Routes.updateDoctorProfile,
+        path: Routes.doctorUpdateProfile,
         builder: (context, state) => BlocProvider(
           create: (context) => AuthCubit(),
           child: const UpdateDoctorProfileScreen(),
@@ -66,6 +69,19 @@ class AppRouter {
         path: Routes.doctorProfile,
         builder: (context, state) =>
             DoctorProfileScreen(doctorModel: state.extra as DoctorModel),
+      ),
+      GoRoute(
+        path: Routes.bookingDoctor,
+        builder: (context, state) =>
+            BookingScreen(doctor: state.extra as DoctorModel),
+      ),
+      GoRoute(
+        path: Routes.settings,
+        builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: Routes.accountInfo,
+        builder: (context, state) => const AccountInformationScreen(),
       ),
     ],
   );

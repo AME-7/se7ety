@@ -16,8 +16,14 @@ class MainApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
       debugShowCheckedModeBanner: false,
-      builder: (_, child) =>
-          SafeArea(top: false, bottom: Platform.isAndroid, child: child!),
+      builder: (_, child) => SafeArea(
+        top: false,
+        bottom: Platform.isAndroid,
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: child!,
+        ),
+      ),
       theme: AppThemes.lightTheme,
     );
   }

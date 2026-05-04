@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:se7ety/core/utils/styles/app_text_styles.dart';
 import 'package:se7ety/core/utils/styles/colors.dart';
+import 'package:se7ety/features/patient/appointments/appointments_screen.dart';
 import 'package:se7ety/features/patient/home/presentation/page/home_screen.dart';
+import 'package:se7ety/features/patient/profile/page/patient_profile_screen.dart';
 import 'package:se7ety/features/patient/sreach/main_search/page/search_screen.dart';
 
 class PatientMainAppScreen extends StatefulWidget {
@@ -28,8 +30,8 @@ class _MainPageState extends State<PatientMainAppScreen> {
         },
       ),
       const SearchScreen(),
-      // const MyAppointmentsScreen(),
-      // const PatientProfileScreen(),
+      const MyAppointmentsScreen(),
+      const PatientProfileScreen(),
     ];
   }
 

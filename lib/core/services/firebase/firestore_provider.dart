@@ -2,8 +2,10 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:se7ety/core/services/local/shared_pref.dart';
 import 'package:se7ety/features/auth/data/model/doctor_model.dart';
 import 'package:se7ety/features/auth/data/model/patient_model.dart';
+import 'package:se7ety/features/patient/booking/data/appointment_model.dart';
 
 class FirebaseProvider {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -11,11 +13,32 @@ class FirebaseProvider {
 
   static final patientCollection = _firestore.collection("patient");
   static final doctorCollection = _firestore.collection("doctor");
+  static final appointmentsCollection = _firestore.collection("appointments");
 
   static User? get currentUser => _auth.currentUser;
 
   static Future<void> addPatient(PatientModel patient) async {
     await patientCollection.doc(patient.uid).set(patient.toJson());
+  }
+
+  static Future<void> addBookedAppointment(AppointmentModel appointment) async {
+    await appointmentsCollection.add(appointment.toJson());
+  }
+
+  static Future<void> deleteBookedAppointment(String id) async {
+    await appointmentsCollection.doc(id).delete();
+  }
+
+  static Future<QuerySnapshot> getBookedAppointmentsByPatientId() async {
+    return await appointmentsCollection
+        .where("patientID", isEqualTo: SharedPref.getUserId())
+        .get();
+  }
+
+  static Future<QuerySnapshot> getBookedAppointmentsByDoctorId() async {
+    return await appointmentsCollection
+        .where("doctorID", isEqualTo: SharedPref.getUserId())
+        .get();
   }
 
   static Future<void> addDoctor(DoctorModel doctor) async {
@@ -24,6 +47,14 @@ class FirebaseProvider {
 
   static Future<void> updateDoctor(DoctorModel doctor) async {
     await doctorCollection.doc(doctor.uid).update(doctor.toUpdateData());
+  }
+
+  static Future<void> updatePatient(PatientModel patient) async {
+    await patientCollection.doc(patient.uid).update(patient.toUpdateData());
+  }
+
+  static Stream<DocumentSnapshot<Object?>> getCurrentPatient() {
+    return patientCollection.doc(SharedPref.getUserId()).snapshots();
   }
 
   static Future<QuerySnapshot> getDoctors() async {
